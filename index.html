@@ -82,6 +82,49 @@
     console.log("Cleared");
   }
 
+  function copyContents(i) {
+      let emoji = document.getElementById("emoji-"+i);
+      console.log(emoji.innerHTML + "ih")
+      var textArea = document.createElement("textarea");
+      textArea.style.position = 'fixed';
+      textArea.style.top = 0;
+      textArea.style.left = 0;
+      textArea.style.display= "none";
+
+      // // Ensure it has a small width and height. Setting to 1px / 1em
+      // // doesn't work as this gives a negative w/h on some browsers.
+      // textArea.style.width = '2em';
+      // textArea.style.height = '2em';
+
+      // // We don't need padding, reducing the size if it does flash render.
+      // textArea.style.padding = 0;
+
+      // // Clean up any borders.
+      // textArea.style.border = 'none';
+      // textArea.style.outline = 'none';
+      // textArea.style.boxShadow = 'none';
+
+      // // Avoid flash of white box if rendered for any reason.
+      // textArea.style.background = 'transparent';
+
+      textArea.value = emoji.innerHTML;
+      document.body.appendChild(textArea);
+      textArea.focus();
+      textArea.select();
+      // textArea.setSelectionRange(0, 99999); /*For mobile devices*/
+
+      try {
+        // Now that we've selected the anchor text, execute the copy command
+          var successful = document.execCommand('copy');
+          var msg = successful ? 'successful' : 'unsuccessful';
+          console.log('Copy emoji command was ' + msg);
+        } catch(err) {
+          console.log('Oops, unable to copy');
+        }
+
+      // document.execCommand("copy");
+  }
+
   function sendToClassify(inputData) {
     fetch('http://127.0.0.1:5000/', {
       method: 'POST',
@@ -92,15 +135,11 @@
     })
       .then(response => {
         if (!response.ok) {
-          // optional: dispatch an error event to be handled elsewhere (may throw there or
-          // do something like set db.error to true for the app to show an error message in the ui
-          // dispatch(failure(appEvent.FETCH_API_DATA, {message: 'Network response was not ok'))
           throw new Error('Network response was not ok')
         }
         return response.json()
       })
       .then(result => {
-        //insert for loop to add emoji suggestions to correct place here
         console.log("api returned",result)
         result['best'].map((label,index) => {document.getElementById("emoji-"+(1+index)).innerHTML = labelToEmoji[label]})
     })}
@@ -116,11 +155,11 @@
   <div id="app-area">
     <canvas id="sketchCanvas" width="500" height="498"></canvas>
     <div id="suggestion-area">
-      <div class="emoji-suggestion" id="emoji-1"></div>
-      <div class="emoji-suggestion" id="emoji-2"></div>
-      <div class="emoji-suggestion" id="emoji-3"></div>
-      <div class="emoji-suggestion" id="emoji-4"></div>
-      <div class="emoji-suggestion" id="emoji-5"></div>
+      <div class="emoji-suggestion" onClick="copyContents(1)" id="emoji-1"></div>
+      <div class="emoji-suggestion" onClick="copyContents(2)" id="emoji-2"></div>
+      <div class="emoji-suggestion" onClick="copyContents(3)" id="emoji-3"></div>
+      <div class="emoji-suggestion" onClick="copyContents(4)" id="emoji-4"></div>
+      <div class="emoji-suggestion" onClick="copyContents(5)" id="emoji-5"></div>
     </div>
   </div>
   <button onclick="javascript:clearCanvas(); return false;">Clear</button>

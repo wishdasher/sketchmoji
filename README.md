@@ -17,4 +17,8 @@ pip install -r src/requirements.txt
 
 export FLASK_APP=src/basicserver.py
 
-and then to run the server use flask un
+and then to run the server use 
+
+flask run
+
+Once the server is running the interface in the file index.html will call it and be able to classify the sketches
