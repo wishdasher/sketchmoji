@@ -25,7 +25,6 @@ def normalize_segpoints(stroke):
 
     segpoints, segtypes = segment_stroke(stroke)
     assert len(segpoints) == len(segtypes) + 1
-
     for i in range(len(segtypes)):
         point = segpoints[i]
         template_x.append(stroke.x[point])
@@ -48,6 +47,8 @@ def normalize_segpoints(stroke):
     template_x = [(x - min_x) / diff_x for x in template_x]
     template_y = [(y - min_y) / diff_y for y in template_y]
 
+    print(template_x)
+    print(template_y)
     return template_x, template_y
 
 def calculate_MHD(stroke, template):
@@ -104,6 +105,12 @@ def classify_stroke(stroke, templates):
     """
     normalized_x, normalized_y = normalize_segpoints(stroke)
     all_mhds = [(template.name, calculate_MHD_alt(normalized_x, normalized_y, template)) for template in templates]
-    best = min(all_mhds, key=lambda x: x[1])[0]
-
+    all_mhds.sort(key=lambda x: x[1])
+    # best = [x[0] for x in all_mhds[:5]]
+    best = []
+    for mhd in all_mhds:
+        if mhd[0] not in best:
+            best.append(mhd[0])
+        if len(best) == 5:
+            break
     return best

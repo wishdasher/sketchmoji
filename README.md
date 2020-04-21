@@ -15,6 +15,6 @@ pip install -U flask-cors
 pip install -r src/requirements.txt
 
 
-export FLASK_APP=src/basic_server.py
+export FLASK_APP=src/basicserver.py
 
 and then to run the server use flask un
