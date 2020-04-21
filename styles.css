@@ -1,0 +1,29 @@
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: Arial;
+}
+
+#app-area {
+  display: flex;
+  margin-bottom: 15px;
+}
+
+canvas#sketchCanvas {
+  width: 500px;
+  height: 498px;
+  border:2px solid black;
+}
+
+#suggestion-area {
+}
+
+.emoji-suggestion {
+  width: 98px;
+  height: 98px;
+  border: 2px solid black;
+  margin-left: -2px;
+  margin-bottom: -2px;
+}

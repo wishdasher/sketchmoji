@@ -1,5 +1,9 @@
 <html>
 <head>
+  <title>SketchMoji</title>
+
+  <link rel="stylesheet" type="text/css" href="styles.css">
+
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
 
   <script type="text/javascript">
@@ -67,26 +71,21 @@
 
   </script>
 
-  <style>
-    body {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      font-family: Arial;
-    }
-
-    canvas#sketchCanvas {
-      margin-bottom: 15px;
-      border:2px solid black;
-    }
-  </style>
-
 </head>
 
 
 <body onload="init();">
   <h1>SketchMoji</h1>
-  <canvas id="sketchCanvas" width="500" height="500"></canvas>
+  <div id="app-area">
+    <canvas id="sketchCanvas"></canvas>
+    <div id="suggestion-area">
+      <div class="emoji-suggestion" id="emoji-1"></div>
+      <div class="emoji-suggestion" id="emoji-2"></div>
+      <div class="emoji-suggestion" id="emoji-3"></div>
+      <div class="emoji-suggestion" id="emoji-4"></div>
+      <div class="emoji-suggestion" id="emoji-5"></div>
+    </div>
+  </div>
   <button onclick="javascript:clear(); return false;">Clear Area</button>
 
 </body>
