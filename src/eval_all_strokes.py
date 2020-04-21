@@ -30,7 +30,7 @@ stroke_names = {
                 }
 
 custom_strokes = strokes
-plt.figure(1, figsize=(12, 8))
+# plt.figure(1, figsize=(12, 8))
 strokeNumber = 1
 for cs in custom_strokes:
     strk = Stroke(x=cs['x'], y=cs['y'], t=cs['t'])
@@ -45,10 +45,10 @@ for cs in custom_strokes:
 
 
     clean_segment_indices, segtypes = segment_stroke(strk)
-    plot_segmentation(strk, clean_segment_indices, segtypes, all=True)
+    # plot_segmentation(strk, clean_segment_indices, segtypes, all=True)
     strokeNumber +=1
 
 
-plt.figure(1).canvas.set_window_title('MIT 6.835: Stroke Segmentation')
-plt.tight_layout()
-plt.show()
+# plt.figure(1).canvas.set_window_title('MIT 6.835: Stroke Segmentation')
+# plt.tight_layout()
+# plt.show()

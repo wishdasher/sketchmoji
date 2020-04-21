@@ -428,9 +428,9 @@ def segment_stroke(stroke):
 
     # PART 4
     angles = compute_angles(stroke, tangents)
-    plot_angles(stroke, angles)
+    # plot_angles(stroke, angles)
     corrected_angles = correct_angles(stroke, angles)
-    plot_angles(stroke, corrected_angles)
+    # plot_angles(stroke, corrected_angles)
     curvatures = compute_curvatures(stroke, cumulative_arc_lengths, corrected_angles)
 
     # PART 5

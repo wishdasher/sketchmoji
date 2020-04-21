@@ -52,9 +52,9 @@ if i <= len(strokes) and i > 0 or i == -1:
     else:
         print(f"{bcolors.BOLD}", "YOUR CLASSIFICATION:", f"{bcolors.FAIL}", best_match, f"{bcolors.ENDC}", f"{bcolors.ENDC}")
 
-    plot_segmentation(strk, clean_segment_indices, segtypes)
-    plt.figure(1).canvas.set_window_title('MIT 6.835: Stroke Segmentation')
-    plt.show()
+    # plot_segmentation(strk, clean_segment_indices, segtypes)
+    # plt.figure(1).canvas.set_window_title('MIT 6.835: Stroke Segmentation')
+    # plt.show()
 else:
     msg = 'Stroke index out of range. Give a number between 1 and ' + str(strokes.size)
     raise ValueError(msg)

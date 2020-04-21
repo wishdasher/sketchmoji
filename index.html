@@ -35,6 +35,7 @@
 
     canvas.addEventListener("mouseup", function (e) {
       mousePressed = false;
+      sendToClassify(points);
     });
 
     canvas.addEventListener("mouseleave", function (e) {
@@ -72,6 +73,27 @@
     console.log("Cleared");
   }
 
+  function sendToClassify(inputData) {
+    fetch('http://127.0.0.1:5000/', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(inputData)
+    })
+      .then(response => {
+        if (!response.ok) {
+          // optional: dispatch an error event to be handled elsewhere (may throw there or
+          // do something like set db.error to true for the app to show an error message in the ui
+          // dispatch(failure(appEvent.FETCH_API_DATA, {message: 'Network response was not ok'))
+          throw new Error('Network response was not ok')
+        }
+        return response.json()
+      })
+      .then(result => {
+        //insert for loop to add emoji suggestions to correct place here
+        console.log("api returned",result)
+    })}
 
   </script>
 
