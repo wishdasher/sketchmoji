@@ -68,18 +68,25 @@
   </script>
 
   <style>
-  body {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      font-family: Arial;
+    }
+
+    canvas#sketchCanvas {
+      margin-bottom: 15px;
+      border:2px solid black;
+    }
   </style>
 
 </head>
 
 
 <body onload="init();">
-  <canvas id="sketchCanvas" width="500" height="500" style="border:2px solid black"></canvas>
+  <h1>SketchMoji</h1>
+  <canvas id="sketchCanvas" width="500" height="500"></canvas>
   <button onclick="javascript:clear(); return false;">Clear Area</button>
 
 </body>
