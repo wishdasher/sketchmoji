@@ -52,9 +52,11 @@
         ctx.closePath();
         ctx.stroke();
       }
+      const time = Date.now();
       points.x.push(x);
       points.y.push(y);
-      points.t.push(Date.now());
+      points.t.push(time);
+      console.log(time + ": " + x + ", " + y);
       lastX = x;
       lastY = y;
   }
@@ -76,8 +78,9 @@
 
 <body onload="init();">
   <h1>SketchMoji</h1>
+
   <div id="app-area">
-    <canvas id="sketchCanvas"></canvas>
+    <canvas id="sketchCanvas" width="500" height="498"></canvas>
     <div id="suggestion-area">
       <div class="emoji-suggestion" id="emoji-1"></div>
       <div class="emoji-suggestion" id="emoji-2"></div>

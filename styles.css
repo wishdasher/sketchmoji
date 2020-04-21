@@ -12,8 +12,6 @@ body {
 }
 
 canvas#sketchCanvas {
-  width: 500px;
-  height: 498px;
   border:2px solid black;
 }
 
@@ -27,3 +25,5 @@ canvas#sketchCanvas {
   margin-left: -2px;
   margin-bottom: -2px;
 }
+
+
