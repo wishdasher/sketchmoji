@@ -4,13 +4,12 @@
 
   <link rel="stylesheet" type="text/css" href="styles.css">
 
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
-
   <script type="text/javascript">
 
   let mousePressed = false;
   let lastX, lastY;
   let ctx;
+  let canvas;
   // point data to be sent
   let points = {
     x: [],
@@ -19,24 +18,26 @@
   };
 
   function init() {
-    ctx = document.getElementById('sketchCanvas').getContext("2d");
+    canvas = document.getElementById('sketchCanvas');
+    ctx = canvas.getContext("2d");
+    const bounds = canvas.getBoundingClientRect();
 
-    $('#sketchCanvas').mousedown(function (e) {
+    canvas.addEventListener("mousedown", function (e) {
       mousePressed = true;
-      draw(e.pageX - $(this).offset().left, e.pageY - $(this).offset().top, false);
+      draw(e.pageX - bounds.left, e.pageY - bounds.top, false);
     });
 
-    $('#sketchCanvas').mousemove(function (e) {
+    canvas.addEventListener("mousemove", function (e) {
       if (mousePressed) {
-        draw(e.pageX - $(this).offset().left, e.pageY - $(this).offset().top, true);
+        draw(e.pageX - bounds.left, e.pageY - bounds.top, true);
       }
     });
 
-    $('#sketchCanvas').mouseup(function (e) {
+    canvas.addEventListener("mouseup", function (e) {
       mousePressed = false;
     });
 
-    $('#sketchCanvas').mouseleave(function (e) {
+    canvas.addEventListener("mouseleave", function (e) {
       mousePressed = false;
     });
   }
@@ -44,8 +45,8 @@
   function draw(x, y, isDown) {
       if (isDown) {
         ctx.beginPath();
-        ctx.strokeStyle = $('#selColor').val();
-        ctx.lineWidth = $('#selWidth').val();
+        // ctx.strokeStyle = ('#selColor').val();
+        // ctx.lineWidth = ('#selWidth').val();
         ctx.lineJoin = "round";
         ctx.moveTo(lastX, lastY);
         ctx.lineTo(x, y);
