@@ -28,4 +28,4 @@ Run the server.
 flask run
 ```
 
-Once the server is running, open `index.html` locally from your file system.
+Once the server is running, open 'http://127.0.0.1:5000/sketchmoji' in your browser

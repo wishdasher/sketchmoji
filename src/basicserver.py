@@ -1,4 +1,4 @@
-from flask import Flask,request
+from flask import Flask,request,render_template
 from stroke_segmentation import segment_stroke
 from plot_segmentation import plot_segmentation
 from Stroke import Stroke
@@ -30,3 +30,7 @@ def take_in_request():
 	clean_segment_indices, segtypes = segment_stroke(strk)
 	best_match = classify_stroke(strk, templates)
 	return {"best": best_match }
+
+@app.route("/sketchmoji")
+def sketchmoji():
+    return render_template('index.html')

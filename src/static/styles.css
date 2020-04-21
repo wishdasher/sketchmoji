@@ -1,0 +1,47 @@
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: Arial;
+}
+
+#app-area {
+  display: flex;
+  margin-bottom: 15px;
+}
+
+canvas#sketchCanvas {
+  border:2px solid black;
+}
+
+#suggestion-area {
+  font-size: 50px;
+  vertical-align: middle;
+  line-height: 2;
+  text-align: center;
+}
+
+.emoji-suggestion {
+  width: 98px;
+  height: 98px;
+  border: 2px solid black;
+  margin-left: -2px;
+  margin-bottom: -2px;
+
+  cursor: default;
+  user-select: none;
+}
+
+.copy-animate {
+  animation: copy-animation .7s ease-out;
+}
+
+@keyframes copy-animation {
+  0% {
+    background-color: #00cc00;
+  }
+  100% {
+    background-color: inherit;
+  }
+}
