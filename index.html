@@ -18,7 +18,7 @@
     t: []
   };
 
-  let labelToEmoji = {
+  const labelToEmoji = {
     "PARTY": "🎉",
     "FIRE": "🔥",
     "SMILE": "😊",
@@ -89,46 +89,18 @@
   }
 
   function copyContents(i) {
-      let emoji = document.getElementById("emoji-"+i);
-      console.log(emoji.innerHTML + "ih")
-      var textArea = document.createElement("textarea");
-      textArea.style.position = 'fixed';
-      textArea.style.top = 0;
-      textArea.style.left = 0;
-      textArea.style.display= "none";
-
-      // // Ensure it has a small width and height. Setting to 1px / 1em
-      // // doesn't work as this gives a negative w/h on some browsers.
-      // textArea.style.width = '2em';
-      // textArea.style.height = '2em';
-
-      // // We don't need padding, reducing the size if it does flash render.
-      // textArea.style.padding = 0;
-
-      // // Clean up any borders.
-      // textArea.style.border = 'none';
-      // textArea.style.outline = 'none';
-      // textArea.style.boxShadow = 'none';
-
-      // // Avoid flash of white box if rendered for any reason.
-      // textArea.style.background = 'transparent';
-
-      textArea.value = emoji.innerHTML;
-      document.body.appendChild(textArea);
-      textArea.focus();
-      textArea.select();
-      // textArea.setSelectionRange(0, 99999); /*For mobile devices*/
-
-      try {
-        // Now that we've selected the anchor text, execute the copy command
-          var successful = document.execCommand('copy');
-          var msg = successful ? 'successful' : 'unsuccessful';
-          console.log('Copy emoji command was ' + msg);
-        } catch(err) {
-          console.log('Oops, unable to copy');
-        }
-
-      // document.execCommand("copy");
+    const emojiBox = document.getElementById("emoji-"+i);
+    emojiBox.classList.add("copy-animate");
+    setTimeout(function() {
+      emojiBox.classList.remove("copy-animate");
+    }, 700);
+    const range = document.createRange();
+    range.selectNode(emojiBox);
+    window.getSelection().removeAllRanges();
+    window.getSelection().addRange(range);
+    document.execCommand("copy");
+    window.getSelection().removeAllRanges();
+    console.log("Copied to clipboard");
   }
 
   function sendToClassify(inputData) {

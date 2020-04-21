@@ -28,4 +28,20 @@ canvas#sketchCanvas {
   border: 2px solid black;
   margin-left: -2px;
   margin-bottom: -2px;
+
+  cursor: default;
+  user-select: none;
+}
+
+.copy-animate {
+  animation: copy-animation .7s ease-out;
+}
+
+@keyframes copy-animation {
+  0% {
+    background-color: #00cc00;
+  }
+  100% {
+    background-color: inherit;
+  }
 }
