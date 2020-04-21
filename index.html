@@ -61,13 +61,14 @@
       lastY = y;
   }
 
-  function clear() {
+  function clearCanvas() {
     // Use the identity matrix while clearing the canvas
     ctx.setTransform(1, 0, 0, 1, 0, 0);
     ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
     points.x.length = 0;
     points.y.length = 0;
     points.t.length = 0;
+    console.log("Cleared");
   }
 
 
@@ -89,7 +90,7 @@
       <div class="emoji-suggestion" id="emoji-5"></div>
     </div>
   </div>
-  <button onclick="javascript:clear(); return false;">Clear Area</button>
+  <button onclick="javascript:clearCanvas(); return false;">Clear</button>
 
 </body>
 
