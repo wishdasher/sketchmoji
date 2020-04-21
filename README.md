@@ -1,24 +1,31 @@
-# sketchmoji
+# SketchMoji
+
 A stroke-based emoji sketch recognizer
 
+## Local setup
 
-In order to run the python server locally
+Clone the repo and run the python server
 
-make virual env (replace python3 with your python path)
+Create the virtual environment.
+
+```
 virtualenv -p python3 venv
-
-activate it using
 source venv/bin/activate
+```
 
+Install dependencies.
+
+```
 pip install flask
 pip install -U flask-cors
 pip install -r src/requirements.txt
-
-
 export FLASK_APP=src/basicserver.py
+```
 
-and then to run the server use 
+Run the server.
 
+```
 flask run
+```
 
-Once the server is running the interface in the file index.html will call it and be able to classify the sketches
+Once the server is running, open `index.html` locally from your file system.
