@@ -58,6 +58,8 @@
     });
   }
 
+  //TODO: listen for onwindowresize, redo bounding box
+
   function draw(x, y, isDown) {
       if (isDown) {
         ctx.beginPath();
@@ -90,16 +92,24 @@
 
   function copyContents(i) {
     const emojiBox = document.getElementById("emoji-"+i);
+
+    // Animate emoji box
     emojiBox.classList.add("copy-animate");
     setTimeout(function() {
       emojiBox.classList.remove("copy-animate");
     }, 700);
-    const range = document.createRange();
-    range.selectNode(emojiBox);
-    window.getSelection().removeAllRanges();
-    window.getSelection().addRange(range);
-    document.execCommand("copy");
-    window.getSelection().removeAllRanges();
+
+    // Copy to clipboard
+    const textarea = document.createElement('textarea');
+    textarea.id = 'temp_element';
+    textarea.style.height = 0;
+    document.body.appendChild(textarea);
+    textarea.value = emojiBox.innerText;
+    const selector = document.querySelector('#temp_element');
+    selector.select();
+    document.execCommand('copy');
+    document.body.removeChild(textarea);
+
     console.log("Copied to clipboard");
   }
 
