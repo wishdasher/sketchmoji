@@ -1,7 +1,7 @@
 import math
 from stroke_segmentation import segment_stroke
 
-def normalize_segpoints(stroke):
+def normalize_segpoints(strokes):
     """
     param stroke : a Stroke object with N x,y,t data points
 
@@ -22,23 +22,23 @@ def normalize_segpoints(stroke):
 
     template_x = []
     template_y = []
+    for stroke in strokes:
+        segpoints, segtypes = segment_stroke(stroke)
+        assert len(segpoints) == len(segtypes) + 1
+        for i in range(len(segtypes)):
+            point = segpoints[i]
+            template_x.append(stroke.x[point])
+            template_y.append(stroke.y[point])
+            if segtypes[i] == 1:
+                midpoint = (segpoints[i] + segpoints[i + 1]) // 2
+                template_x.append(stroke.x[midpoint])
+                template_y.append(stroke.y[midpoint])
+        last_point = segpoints[-1]
+        template_x.append(stroke.x[last_point])
+        template_y.append(stroke.y[last_point])
 
-    segpoints, segtypes = segment_stroke(stroke)
-    assert len(segpoints) == len(segtypes) + 1
-    for i in range(len(segtypes)):
-        point = segpoints[i]
-        template_x.append(stroke.x[point])
-        template_y.append(stroke.y[point])
-        if segtypes[i] == 1:
-            midpoint = (segpoints[i] + segpoints[i + 1]) // 2
-            template_x.append(stroke.x[midpoint])
-            template_y.append(stroke.y[midpoint])
-    last_point = segpoints[-1]
-    template_x.append(stroke.x[last_point])
-    template_y.append(stroke.y[last_point])
-
-    num_arcs = sum([t for t in segtypes if t == 1])
-    assert len(template_x) == len(segpoints) + num_arcs
+        num_arcs = sum([t for t in segtypes if t == 1])
+    # assert len(template_x) == len(segpoints) + num_arcs
 
     min_x, max_x = min(template_x), max(template_x)
     min_y, max_y = min(template_y), max(template_y)
@@ -94,7 +94,7 @@ def calculate_MHD_alt(normalized_x, normalized_y, template):
         directed_mhd(normalized_x, normalized_y, template.x, template.y),
         directed_mhd(template.x, template.y, normalized_x, normalized_y))
 
-def classify_stroke(stroke, templates):
+def classify_stroke(strokes, templates):
     """
     param stroke : a Stroke object with N x,y,t data points
     param templates: a list of Template objects, each with name, x, y
@@ -103,7 +103,7 @@ def classify_stroke(stroke, templates):
     return :
         string representing the name of the best matched Template of a stroke
     """
-    normalized_x, normalized_y = normalize_segpoints(stroke)
+    normalized_x, normalized_y = normalize_segpoints(strokes)
     all_mhds = [(template.name, calculate_MHD_alt(normalized_x, normalized_y, template)) for template in templates]
     all_mhds.sort(key=lambda x: x[1])
     # best = [x[0] for x in all_mhds[:5]]

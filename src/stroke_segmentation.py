@@ -23,7 +23,7 @@ MINIMUM_ARC_ANGLE = 36 #in degrees
 MERGE_LENGTH_THRESHOLD = .2
 MERGE_FIT_ERROR_THRESHOLD = .1
 
-# redefining here to be my values
+# sophie params
 # goto
 PEN_SMOOTHING_WINDOW = 5
 TANGENT_WINDOW = 11
@@ -36,6 +36,17 @@ MINIMUM_ARC_ANGLE = 36 #in degrees
 MERGE_LENGTH_THRESHOLD = .2
 MERGE_FIT_ERROR_THRESHOLD = 1
 
+#margaret params
+# EN_SMOOTHING_WINDOW = 5
+# TANGENT_WINDOW = 11
+# CURVATURE_WINDOW = 11
+# SPEED_THRESHOLD_1 = 1.1 #a percentage of the average speed
+# CURVATURE_THRESHOLD = .75 #in degrees per pixel
+# SPEED_THRESHOLD_2 = 1.3 #a percentage of the average speed
+# MINIMUM_DISTANCE_BETWEEN_CORNERS = 40 #originally 0
+# MINIMUM_ARC_ANGLE = 36 #in degrees
+# MERGE_LENGTH_THRESHOLD = .2
+# MERGE_FIT_ERROR_THRESHOLD = .1
 
 def compute_cumulative_arc_lengths(stroke):
     """

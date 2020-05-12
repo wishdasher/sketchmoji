@@ -26,9 +26,11 @@ def hello_world(i):
 def take_in_request():
 	data = request.get_json()
 	templates = get_templates()
-	strk = Stroke(x=data['x'], y=data['y'], t=data['t'])
-	clean_segment_indices, segtypes = segment_stroke(strk)
-	best_match = classify_stroke(strk, templates)
+	print(len(data['x']))
+	# strks = [Stroke(x=data['x'], y=data['y'], t=data['t']) for i in range(1)]
+	strks = [Stroke(x=data['x'][i], y=data['y'][i], t=data['t'][i]) for i in range(len(data['x']))]
+	print("stroke",data)
+	best_match = classify_stroke(strks, templates)
 	return {"best": best_match }
 
 @app.route("/sketchmoji")

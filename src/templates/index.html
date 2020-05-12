@@ -28,8 +28,10 @@
     "HEARTEYES": "😍",
     "CRYING": "😭",
     "CHECKMARK": "✔️",
-    "SOCCERBALL": "⚽",
     "BREAD": "🥖",
+    "POOP": "💩",
+    "OK": "👌",
+    "LAUGHINGTEARS": "😂"
   }
 
   function init() {
@@ -51,6 +53,9 @@
     canvas.addEventListener("mouseup", function (e) {
       mousePressed = false;
       sendToClassify(points);
+      points.x.push([])
+      points.y.push([])
+      points.t.push([])
     });
 
     canvas.addEventListener("mouseleave", function (e) {
@@ -72,9 +77,9 @@
         ctx.stroke();
       }
       const time = Date.now();
-      points.x.push(x);
-      points.y.push(y);
-      points.t.push(time);
+      points.x[points.x.length -1].push(x);
+      points.y[points.x.length -1].push(y);
+      points.t[points.x.length -1].push(time);
       console.log(time + ": " + x + ", " + y);
       lastX = x;
       lastY = y;
@@ -87,6 +92,9 @@
     points.x.length = 0;
     points.y.length = 0;
     points.t.length = 0;
+    points.x.push([])
+    points.y.push([])
+    points.t.push([])
     console.log("Cleared");
   }
 
