@@ -47,8 +47,8 @@ def normalize_segpoints(strokes):
     template_x = [(x - min_x) / diff_x for x in template_x]
     template_y = [(y - min_y) / diff_y for y in template_y]
 
-    print(template_x)
-    print(template_y)
+    print("\'x\':",template_x, ",")
+    print("\'y\':",template_y)
     return template_x, template_y
 
 def calculate_MHD(stroke, template):

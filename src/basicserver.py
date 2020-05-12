@@ -28,6 +28,14 @@ def take_in_request():
 	templates = get_templates()
 	print(len(data['x']))
 	# strks = [Stroke(x=data['x'], y=data['y'], t=data['t']) for i in range(1)]
+	for d in range(len(data['x'])):
+		print("length of data",len(data['x'][d]))
+		if len(data['x'][d]) < 3:
+			print(data['x'][d]*2)
+			data['x'][d] = [data['x'][d][0],data['x'][d][0],data['x'][d][0]]
+			data['y'][d] = [data['y'][d][0],data['y'][d][0],data['y'][d][0]]
+			data['t'][d] = [data['t'][d][0],data['t'][d][0]+1,data['t'][d][0]+2]
+		print(len(data['t'][d]))
 	strks = [Stroke(x=data['x'][i], y=data['y'][i], t=data['t'][i]) for i in range(len(data['x']))]
 	print("stroke",data)
 	best_match = classify_stroke(strks, templates)
