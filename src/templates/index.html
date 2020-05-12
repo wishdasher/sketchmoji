@@ -68,8 +68,6 @@
   function draw(x, y, isDown) {
       if (isDown) {
         ctx.beginPath();
-        // ctx.strokeStyle = ('#selColor').val();
-        // ctx.lineWidth = ('#selWidth').val();
         ctx.lineJoin = "round";
         ctx.moveTo(lastX, lastY);
         ctx.lineTo(x, y);
@@ -92,9 +90,9 @@
     points.x.length = 0;
     points.y.length = 0;
     points.t.length = 0;
-    points.x.push([])
-    points.y.push([])
-    points.t.push([])
+    points.x.push([]);
+    points.y.push([]);
+    points.t.push([]);
     console.log("Cleared");
   }
 
